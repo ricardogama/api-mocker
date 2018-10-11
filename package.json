@@ -1,0 +1,39 @@
+{
+  "name": "api-mocker",
+  "version": "1.0.0",
+  "description": "Server to mock and record API requests",
+  "keywords": [
+    "mock",
+    "test",
+    "testing",
+    "mocking",
+    "api",
+    "request",
+    "recorder"
+  ],
+  "author": {
+    "name": "Ricardo Gama",
+    "email": "ricardogama89@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ricardogama/api-mocker.git"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.2.4",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "validator.js": "^2.0.3",
+    "validator.js-asserts": "^4.0.2"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  }
+}
