@@ -1,6 +1,6 @@
 {
   "name": "api-mocker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Server to mock and record API requests",
   "keywords": [
     "mock",
@@ -26,14 +26,14 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "config": "^3.2.4",
+    "config": "^3.3.1",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
-    "validator.js": "^2.0.3",
-    "validator.js-asserts": "^4.0.2"
+    "validator.js": "^2.0.4",
+    "validator.js-asserts": "^6.0.0"
   },
   "devDependencies": {
-    "jest": "^24.9.0",
+    "jest": "^26.0.1",
     "supertest": "^4.0.2"
   }
 }
