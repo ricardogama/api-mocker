@@ -25,7 +25,8 @@ app.post('/mocks', (req, res) => {
     path: [is.Required(), is.String(), is.NotBlank()],
     body: is.Body(),
     headers: is.Headers(),
-    times: [is.Integer(), is.GreaterThanOrEqual(1)]
+    times: [is.Integer(), is.GreaterThanOrEqual(1)],
+    query: is.Query(),
   });
 
   if (errors !== true) {

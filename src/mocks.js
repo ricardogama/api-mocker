@@ -1,4 +1,18 @@
-const { isEqual } = require('lodash');
+const { isEqual, isArray } = require('lodash');
+
+// Compare object with string arrays, for headers and query.
+const isHeaderEqual = isQueryEqual = (expected, actual) => {
+  // Sort all arrays.
+  for (const values of Object.values(expected)) {
+    values.sort()
+  }
+
+  for (const values of Object.values(actual)) {
+    values.sort()
+  }
+
+  return isEqual(expected, actual)
+}
 
 // Stores created mocks.
 let expected = [];
@@ -39,6 +53,22 @@ exports.createMock = data => {
 // If there is a match, the mock is returned and removed from the expected list.
 // Otherwise, the request is added to the unexpected list.
 exports.matchRequest = req => {
+  // Transorm query single values to array.
+  req.query = Object.keys(req.query).reduce((c, k) => {
+    if (!isArray(req.query[k])) {
+      c[k] = [req.query[k]]
+    } else {
+      c[k] = req.query[k]
+    }
+    return c
+  }, {});
+
+  // Split headers values by comma.
+  req.headers = Object.keys(req.headers).reduce((c, k) => {
+    c[k] = req.headers[k].split(',').map(h => h.trim());
+    return c
+  }, {});
+
   for (const i in expected) {
     const mock = expected[i];
 
@@ -47,7 +77,7 @@ exports.matchRequest = req => {
     }
 
     if (mock.headers) {
-      if (!isEqual(req.headers, {...req.headers, ...mock.headers})) {
+      if (!isHeaderEqual(req.headers, {...req.headers, ...mock.headers})) {
         continue;
       }
     }
@@ -58,7 +88,7 @@ exports.matchRequest = req => {
       }
     }
 
-    if (mock.query && !isEqual(mock.query, req.query)) {
+    if (mock.query && !isQueryEqual(mock.query, req.query)) {
       continue;
     }
 

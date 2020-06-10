@@ -11,9 +11,42 @@ const Headers = function() {
       throw new Violation(this, headers, "headers should be an object");
     }
 
-    for (const header of Object.values(headers)) {
-      if (!isString(header)) {
-        throw new Violation(this, headers, "headers values should be strings");
+    for (const values of Object.values(headers)) {
+      if (!isArray(values)) {
+        throw new Violation(this, query, "header values should be an array");
+      }
+
+      for (const value of values) {
+        if (!isString(value)) {
+          throw new Violation(this, query, "header value should be a string");
+        }
+      }
+    }
+
+    return true;
+  };
+
+  return this;
+}
+
+// Query assert.
+const Query = function() {
+  this.__class__ = 'Query';
+
+  this.validate = query => {
+    if (!isPlainObject(query)) {
+      throw new Violation(this, query, "query should be an object");
+    }
+
+    for (const values of Object.values(query)) {
+      if (!isArray(values)) {
+        throw new Violation(this, query, "query values should be an array");
+      }
+
+      for (const value of values) {
+        if (!isString(value)) {
+          throw new Violation(this, query, "query value should be a string");
+        }
       }
     }
 
@@ -50,5 +83,6 @@ exports.validate = (data, constraints) => validator.validate(data, new Constrain
 exports.is = Assert.extend({
   ...extraAsserts,
   Headers,
+  Query,
   Body,
 });
