@@ -54,7 +54,11 @@ app.use(function (req, res, next) {
   }
 
   res.
-    set(match.headers).
+    // Join headers arrays.
+    set(Object.keys(match.headers || {}).reduce((c, k) => {
+      c[k] = match.headers[k].join(',');
+      return c
+    }, {})).
     status(match.status).
     send(match.body);
 })
