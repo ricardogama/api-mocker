@@ -1,6 +1,6 @@
 {
   "name": "api-mocker",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Server to mock and record API requests",
   "keywords": [
     "mock",
