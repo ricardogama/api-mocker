@@ -22,7 +22,7 @@ let unexpected = [];
 
 // Get mocks state.
 exports.getMocks = () => ({
-  expected,
+  expected: expected.filter(mock => !mock.anytime),
   unexpected
 });
 
@@ -92,8 +92,10 @@ exports.matchRequest = req => {
       continue;
     }
 
-    // Remove match from expected.
-    expected.splice(i, 1);
+    if (!mock.anytime) {
+      // Remove match from expected.
+      expected.splice(i, 1);
+    }
 
     return mock.response;
   }
