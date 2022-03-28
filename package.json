@@ -28,7 +28,7 @@
     "body-parser": "^1.19.0",
     "config": "^3.3.1",
     "express": "^4.17.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "validator.js": "^2.0.4",
     "validator.js-asserts": "^6.0.0"
   },
