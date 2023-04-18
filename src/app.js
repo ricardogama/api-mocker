@@ -9,6 +9,8 @@ const app = module.exports = express();
 
 // Parse JSON body.
 app.use(bodyParser.json());
+// Parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({extended: true}));
 
 // Get mocks state.
 app.get('/mocks', (req, res) => res.send(getMocks()));

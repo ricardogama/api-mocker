@@ -53,7 +53,7 @@ exports.createMock = data => {
 // If there is a match, the mock is returned and removed from the expected list.
 // Otherwise, the request is added to the unexpected list.
 exports.matchRequest = req => {
-  // Transorm query single values to array.
+  // Transform query single values to array.
   req.query = Object.keys(req.query).reduce((c, k) => {
     if (!isArray(req.query[k])) {
       c[k] = [req.query[k]]
@@ -78,17 +78,29 @@ exports.matchRequest = req => {
 
     if (mock.headers) {
       if (!isHeaderEqual(req.headers, {...req.headers, ...mock.headers})) {
+        console.log(
+          "Unexpected request headers for call to " + req.method + " " + req.path +
+          "\nExpected:\n" + JSON.stringify(mock.headers) + "\nActual:\n" + JSON.stringify(req.headers)
+        );
         continue;
       }
     }
 
     if (mock.body) {
       if (!isEqual(mock.body, req.body)) {
+        console.log(
+          "Unexpected request body for call to " + req.method + " " + req.path +
+          "\nExpected:\n" + JSON.stringify(mock.body) + "\nActual:\n" + JSON.stringify(req.body)
+        );
         continue;
       }
     }
 
     if (mock.query && !isQueryEqual(mock.query, req.query)) {
+      console.log(
+        "Unexpected request query for call to " + req.method + " " + req.path +
+        "\nExpected:\n" + JSON.stringify(mock.query) + "\nActual:\n" + JSON.stringify(req.query)
+      );
       continue;
     }
 

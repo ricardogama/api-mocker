@@ -4,7 +4,7 @@ Server to mock and record API requests.
 
 ## Status
 
-[![Build Status](https://travis-ci.com/ricardogama/api-mocker.svg?branch=master)](https://travis-ci.com/ricardogama/api-mocker) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE)
+[![Build Status](https://travis-ci.com/Teamwork/api-mocker.svg?branch=master)](https://travis-ci.com/Teamwork/api-mocker) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE)
 
 ## Overview
 
@@ -35,7 +35,7 @@ Mocking on port 3005
 You can also run the server in a Docker container:
 
 ```sh
-$ docker run -d -p 3000:3000 ricardogama/api-mocker:latest
+$ docker run -d -p 3000:3000 teamwork/api-mocker:latest
 ```
 
 If you have the local environment defined in a `docker-compose.yml` file:
@@ -43,7 +43,7 @@ If you have the local environment defined in a `docker-compose.yml` file:
 ```yml
 aws:
   container_name: aws
-  image: ricardogama/api-mocker
+  image: teamwork/api-mocker
   environment:
     PORT: 3005
   ports:
